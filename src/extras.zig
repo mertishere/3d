@@ -33,6 +33,7 @@ pub fn sortVectors(camera: Camera, vs: []Vector) ![]Vector {
     var sorted_vs = try allocator.alloc(Vector, vs.len);
     std.mem.sort(DistVector, v_dists, {}, descByDistance);
     for (v_dists, 0..) |v, i| {
+        if (v.d > 200) continue;
         sorted_vs[i] = v.v;
         sorted_vs[i].distance = v.d;
     }
